@@ -21,7 +21,7 @@ class Reader {
 
         return {
             devices: devices,
-            rates: rates
+            powerplan: new PowerPlan(rates, input.maxPower)
         };
     }
 }
