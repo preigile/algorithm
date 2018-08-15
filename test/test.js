@@ -30,7 +30,8 @@ describe('Input data reader', function () {
             const devices = data.devices;
             const powerplan = data.powerplan;
             const calculator = new Calculator(powerplan, devices);
+            const output = calculator.calculate();
+            console.log(output);
         })
     });
 });
-    
