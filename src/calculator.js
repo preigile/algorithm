@@ -50,13 +50,16 @@ class Calculator {
         const energyPerDevice = {};
 
         for (let hour in schedule) {
-            let devices = schedule[hour];
+            let deviceIds = schedule[hour];
             let rate = this.powerplan.getRate(hour);
 
-            devices.forEach(device => {
-                let current = energyPerDevice[device];
-                energyPerDevice[device] = current ? current + rate.value : rate.value;
-                total = rate.value;
+            deviceIds.forEach(id => {
+                const device = this.devices.find(each => each.id == id);
+                let current = energyPerDevice[id];
+                let consumption = rate.value * device.power / 1000.0;
+
+                energyPerDevice[id] = current ? current + consumption : consumption;
+                total = consumption;
             });
         }
 
