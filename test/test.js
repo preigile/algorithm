@@ -1,8 +1,6 @@
 const expect = require('chai').expect;
 
 const Reader = require('../src/reader');
-const Device = require('../src/device');
-const Calculator = require('../src/calculator');
 
 describe('Input data reader', function () {
     it('should read devices', function () {
@@ -22,16 +20,5 @@ describe('Input data reader', function () {
     it('should read max power', function () {
         const powerplan = Reader.read('test/data/input.json').powerplan;
         expect(powerplan.maxPower).to.equal(2100);
-    });
-
-    describe('Calculator', function () {
-        it('should work', function () {
-            const data = Reader.read('test/data/input.json');
-            const devices = data.devices;
-            const powerplan = data.powerplan;
-            const calculator = new Calculator(powerplan, devices);
-            const output = calculator.calculate();
-            console.log(output);
-        })
     });
 });

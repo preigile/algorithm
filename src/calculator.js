@@ -3,7 +3,7 @@ const Device = require('./device');
 const Rate = require('./rate');
 
 class ScheduledDevice {
-    constructor(device, from, to ) {
+    constructor(device, from, to) {
         this.device = device;
         this.from = from;
         this.to = to;
@@ -19,7 +19,7 @@ class Calculator {
 
     calculate() {
         const schedule = this.calculateSchedule();
-        
+
         return {
             "schedule": schedule,
             "consumedEnergy": Calculator.calculateConsumedEnergy(schedule)
@@ -30,7 +30,7 @@ class Calculator {
         const schedule = {};
 
         this.devices.forEach(device => {
-            if(device.duration === 24) {
+            if (device.duration === 24) {
                 this.scheduledDevices.push(new ScheduledDevice(device, 0, 23))
             }
         });
@@ -46,9 +46,12 @@ class Calculator {
     }
 
     static calculateConsumedEnergy(schedule) {
+        let total = 0.0;
+        const energyPerDevice = {};
+
         return {
-            "value": 0,
-            "devices": {}
+            "value": total,
+            "devices": energyPerDevice
         };
     }
 }
