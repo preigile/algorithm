@@ -7,8 +7,8 @@ class Rate {
 
     includes(hour) {
         return this.from < this.to
-            ? hour >= this.from && hour <= this.to
-            : (hour >= this.from && hour <= 23) || (hour >= 0 && hour <= this.to);
+            ? hour >= this.from && hour < this.to
+            : hour >= this.from || hour < this.to;
     }
 }
 
