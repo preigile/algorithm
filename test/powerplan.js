@@ -10,6 +10,6 @@ describe('Power plan', function () {
 
         expect(powerplan.getRate(7).value).to.equal(1.0);
         expect(powerplan.getRate(12).value).to.equal(2.0);
-        // expect(powerplan.getRate(10)).to.be.null;
+        expect(powerplan.getRate(10).value).to.equal(0.0);
     })
 });

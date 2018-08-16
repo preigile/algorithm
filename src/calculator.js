@@ -12,7 +12,7 @@ class ScheduledDevice {
 
 class Calculator {
     constructor(powerplan, devices) {
-        this.powerPlan = powerplan;
+        this.powerplan = powerplan;
         this.devices = devices;
         this.scheduledDevices = [];
     }
@@ -22,7 +22,7 @@ class Calculator {
 
         return {
             "schedule": schedule,
-            "consumedEnergy": Calculator.calculateConsumedEnergy(schedule)
+            "consumedEnergy": this.calculateConsumedEnergy(schedule)
         };
     }
 
@@ -45,9 +45,20 @@ class Calculator {
         return schedule;
     }
 
-    static calculateConsumedEnergy(schedule) {
+    calculateConsumedEnergy(schedule) {
         let total = 0.0;
         const energyPerDevice = {};
+
+        for (let hour in schedule) {
+            let devices = schedule[hour];
+            let rate = this.powerplan.getRate(hour);
+
+            devices.forEach(device => {
+                let current = energyPerDevice[device];
+                energyPerDevice[device] = current ? current + rate.value : rate.value;
+                total = rate.value;
+            });
+        }
 
         return {
             "value": total,
