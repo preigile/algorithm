@@ -6,6 +6,10 @@ class Device {
         this.duration = duration;
         this.mode = mode;
     }
+
+    get energy() {
+        return this.power * this.duration;
+    }
 }
 
 module.exports = Device;

@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ac058ca0-7c34-462e-924a-39ed58f9dff2" name="Default Changelist" comment="" />
+    <list default="true" id="ac058ca0-7c34-462e-924a-39ed58f9dff2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/calculator.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/calculator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reader.js" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -45,7 +48,7 @@
           <entry key="css" value="44" />
           <entry key="gitignore" value="42" />
           <entry key="html" value="70" />
-          <entry key="js" value="2230" />
+          <entry key="js" value="2250" />
           <entry key="json" value="48" />
           <entry key="less" value="1" />
           <entry key="md" value="8" />
@@ -58,7 +61,7 @@
           <entry key="Git file" value="42" />
           <entry key="HTML" value="70" />
           <entry key="JSON" value="48" />
-          <entry key="JavaScript" value="2232" />
+          <entry key="JavaScript" value="2252" />
           <entry key="Less" value="1" />
           <entry key="PLAIN_TEXT" value="8" />
         </counts>
@@ -79,8 +82,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/calculator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1215">
-              <caret line="81" column="28" lean-forward="true" selection-start-line="81" selection-start-column="28" selection-end-line="81" selection-end-column="28" />
+            <state relative-caret-position="260">
+              <caret line="36" column="36" selection-start-line="36" selection-start-column="36" selection-end-line="36" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -151,8 +154,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/reader.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="11" lean-forward="true" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
+            <state relative-caret-position="465">
+              <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
             </state>
           </provider>
         </entry>
@@ -169,11 +172,11 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>each</find>
       <find>getRate</find>
       <find>powerplan</find>
       <find>var</find>
       <find>+</find>
+      <find>each</find>
     </findStrings>
     <replaceStrings>
       <replace>let</replace>
@@ -204,15 +207,15 @@
         <option value="$PROJECT_DIR$/src/device.js" />
         <option value="$PROJECT_DIR$/test/test.js" />
         <option value="$PROJECT_DIR$/src/powerplan.js" />
-        <option value="$PROJECT_DIR$/src/reader.js" />
         <option value="$PROJECT_DIR$/test/powerplan.js" />
         <option value="$PROJECT_DIR$/test/rate.js" />
         <option value="$PROJECT_DIR$/test/reader.js" />
-        <option value="$PROJECT_DIR$/src/calculator.js" />
         <option value="$PROJECT_DIR$/src/period.js" />
         <option value="$PROJECT_DIR$/src/rate.js" />
         <option value="$PROJECT_DIR$/test/calculator.js" />
         <option value="$PROJECT_DIR$/test/period.js" />
+        <option value="$PROJECT_DIR$/src/reader.js" />
+        <option value="$PROJECT_DIR$/src/calculator.js" />
       </list>
     </option>
   </component>
@@ -317,7 +320,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21015000" />
+    <option name="totallyTimeSpent" value="21538000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="824" extended-state="6" />
@@ -411,13 +414,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/reader.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="11" lean-forward="true" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/powerplan.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -474,10 +470,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/reader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/calculator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1215">
-          <caret line="81" column="28" lean-forward="true" selection-start-line="81" selection-start-column="28" selection-end-line="81" selection-end-column="28" />
+        <state relative-caret-position="260">
+          <caret line="36" column="36" selection-start-line="36" selection-start-column="36" selection-end-line="36" selection-end-column="36" />
         </state>
       </provider>
     </entry>

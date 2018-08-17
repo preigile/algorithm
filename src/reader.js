@@ -18,7 +18,7 @@ class Reader {
         });
 
         input.rates.forEach(rate => {
-            rates.push(new Rate(rate.from, rate.to, parseFloat(rate.value)));
+            rates.push(new Rate(parseInt(rate.from), parseInt(rate.to), parseFloat(rate.value)));
         });
 
         return {

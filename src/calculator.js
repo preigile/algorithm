@@ -34,14 +34,18 @@ class Calculator {
     calculateSchedule() {
         const schedule = {};
         const scheduledDevices = [];
-        const unscheduledDevices = this.devices.slice(0);
+        const unscheduledDevices = [];
 
-        this.devices.forEach((device, index) => {
+        this.devices.forEach(device => {
             if (device.duration === 24) {
                 scheduledDevices.push(new ScheduledDevice(device, 0));
-                unscheduledDevices.splice(index, 1);
+            } else {
+                unscheduledDevices.push(device);
             }
         });
+
+        unscheduledDevices.sort((a, b) => a.energy <= b.energy);
+        this.scheduleDevices(unscheduledDevices, scheduledDevices);
 
         [...Array(24).keys()].forEach(hour => {
             schedule[hour] = scheduledDevices
@@ -74,6 +78,20 @@ class Calculator {
             "value": total,
             "devices": consumptionPerDevice
         };
+    }
+
+    scheduleDevices(devices, scheduledDevices) {
+        devices.forEach(device => {
+            [...Array(24).keys()].forEach(hour => {
+                const consumption = this.calculateDeviceConsumption(device, hour, scheduledDevices);
+                // Truthy consumption means that device can be scheduled
+                if (consumption) {
+                    scheduledDevices.push(new ScheduledDevice(device, hour));
+                    const toSchedule = devices.filter(each => each.id !== device.id);
+                    this.scheduleDevices(toSchedule, scheduledDevices);
+                }
+            });
+        });
     }
 
     calculateDeviceConsumption(device, from, scheduledDevices) {
