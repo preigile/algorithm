@@ -1,14 +1,13 @@
+const Period = require('./period');
+
 class Rate {
     constructor(from, to, value) {
-        this.from = from;
-        this.to = to;
+        this.period = new Period(from, to);
         this.value = value;
     }
 
     includes(hour) {
-        return this.from < this.to
-            ? hour >= this.from && hour < this.to
-            : hour >= this.from || hour < this.to;
+        return this.period.includes(hour);
     }
 }
 

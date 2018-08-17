@@ -10,6 +10,18 @@ describe('Calculator', function () {
     const data = Reader.read('test/data/input.json');
     const calculator = new Calculator(data.powerplan, data.devices);
 
+    it('should schedule 24h devices', function () {
+        const output = calculator.calculate();
+        expect(output.schedule['0']).to.include("02DDD23A85DADDD71198305330CC386D");
+        expect(output.schedule['0']).to.include("1E6276CC231716FE8EE8BC908486D41E");
+
+        expect(output.schedule['12']).to.include("02DDD23A85DADDD71198305330CC386D");
+        expect(output.schedule['12']).to.include("1E6276CC231716FE8EE8BC908486D41E");
+
+        expect(output.schedule['23']).to.include("02DDD23A85DADDD71198305330CC386D");
+        expect(output.schedule['23']).to.include("1E6276CC231716FE8EE8BC908486D41E");
+    });
+
     it('should calculate consumed energy for 24h device', function () {
         const output = calculator.calculate();
         const devices = output.consumedEnergy.devices;

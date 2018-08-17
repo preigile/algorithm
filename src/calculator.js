@@ -1,12 +1,18 @@
 const PowerPlan = require('./powerplan');
+const Period = require('./period');
 const Device = require('./device');
 const Rate = require('./rate');
 
 class ScheduledDevice {
-    constructor(device, from, to) {
+    constructor(device, hour) {
         this.device = device;
-        this.from = from;
-        this.to = to;
+        this.period = new Period(hour, hour);
+        this.period.extend(device.duration);
+    }
+
+    includes(hour) {
+        return this.period.includes(hour);
+
     }
 }
 
@@ -31,15 +37,14 @@ class Calculator {
 
         this.devices.forEach(device => {
             if (device.duration === 24) {
-                scheduledDevices.push(new ScheduledDevice(device, 0, 23))
+                scheduledDevices.push(new ScheduledDevice(device, 0))
             }
         });
 
         [...Array(24).keys()].forEach(hour => {
-            const ids = scheduledDevices
-                .filter(each => hour >= each.from && hour <= each.to)
+            schedule[hour] = scheduledDevices
+                .filter(each => each.includes(hour))
                 .map(each => each.device.id);
-            schedule[hour.toString()] = ids;
         });
 
         return schedule;
@@ -51,7 +56,7 @@ class Calculator {
 
         for (let hour in schedule) {
             let deviceIds = schedule[hour];
-            let rate = this.powerplan.getRate(parseInt(hour));
+            let rate = this.powerplan.getRate(hour);
 
             deviceIds.forEach(id => {
                 const device = this.devices.find(device => device.id === id);
@@ -67,6 +72,10 @@ class Calculator {
             "value": total,
             "devices": consumptionPerDevice
         };
+    }
+
+    calculateDeviceConsumption(device, from, scheduledDevices) {
+
     }
 }
 
