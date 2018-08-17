@@ -33,11 +33,13 @@ class Calculator {
 
     calculateSchedule() {
         const schedule = {};
-        let scheduledDevices = [];
+        const scheduledDevices = [];
+        const unscheduledDevices = this.devices.slice(0);
 
-        this.devices.forEach(device => {
+        this.devices.forEach((device, index) => {
             if (device.duration === 24) {
-                scheduledDevices.push(new ScheduledDevice(device, 0))
+                scheduledDevices.push(new ScheduledDevice(device, 0));
+                unscheduledDevices.splice(index, 1);
             }
         });
 
