@@ -81,21 +81,25 @@ class Calculator {
     }
 
     scheduleDevices(devices, scheduledDevices) {
+        devices.sort((a, b) => a.energy <= b.energy);
+
+        const sortedRates = this.powerplan.getSortedRates();
         devices.forEach(device => {
-            [...Array(24).keys()].forEach(hour => {
-                const consumption = this.calculateDeviceConsumption(device, hour, scheduledDevices);
-                // Truthy consumption means that device can be scheduled
-                if (consumption) {
-                    scheduledDevices.push(new ScheduledDevice(device, hour));
-                    const toSchedule = devices.filter(each => each.id !== device.id);
-                    this.scheduleDevices(toSchedule, scheduledDevices);
-                }
-            });
+            const allowedStartPeriod = device.allowedStartPeriod;
+            scheduledDevices.push(new ScheduledDevice(device, allowedStartPeriod.from));
         });
-    }
 
-    calculateDeviceConsumption(device, from, scheduledDevices) {
-
+        // devices.forEach(device => {
+        //     [...Array(24).keys()].forEach(hour => {
+        //         const consumption = this.calculateDeviceConsumption(device, hour, scheduledDevices);
+        //         // Truthy consumption means that device can be scheduled
+        //         if (consumption) {
+        //             scheduledDevices.push(new ScheduledDevice(device, hour));
+        //             const toSchedule = devices.filter(each => each.id !== device.id);
+        //             this.scheduleDevices(toSchedule, scheduledDevices);
+        //         }
+        //     });
+        // });
     }
 }
 

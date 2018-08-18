@@ -13,6 +13,15 @@ class Period {
     extend(duration) {
         const extended = this.to + duration;
         this.to = extended > 23 ? extended - 24 : extended;
+
+        return this;
+    }
+
+    subtract(duration) {
+        const to = this.to - duration;
+        this.to = to < 0 ? to + 24 : to;
+
+        return this;
     }
 }
 

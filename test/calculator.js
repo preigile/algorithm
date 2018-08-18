@@ -6,7 +6,7 @@ const Device = require('../src/device');
 const Reader = require('../src/reader');
 const Rate = require('../src/rate');
 
-describe('Calculator', function () {
+describe('Calculator on full input data', function () {
     const data = Reader.read('test/data/input.json');
     const calculator = new Calculator(data.powerplan, data.devices);
 
@@ -31,6 +31,34 @@ describe('Calculator', function () {
 
     it('should calculate total consumed energy', function () {
         const output = calculator.calculate();
-        expect(output.consumedEnergy.value).to.be.closeTo(10.796, 0.001);
+        expect(output.consumedEnergy.value).to.be.closeTo(50.08, 0.001);
+    })
+});
+
+describe('Calculator on small input data', function () {
+
+    function calculate(input) {
+        const data = Reader.materialize(input);
+        const calculator = new Calculator(data.powerplan, data.devices);
+        return calculator.calculate();
+    }
+
+    it('should calculate the simplest schedule', function () {
+        const input = {
+            "devices": [
+                {"id": "d0", "name": "d0", "power": 10, "duration": 2, "mode": "day"}
+            ],
+            "rates": [
+                {"from": 0, "to": 23, "value": 1}
+            ],
+            "maxPower": 1000
+        };
+
+        const output = calculate(input);
+
+        expect(output.schedule['9']).to.have.length(0);
+        expect(output.schedule['7']).to.include("d0");
+        expect(output.schedule['8']).to.include("d0");
+        expect(output.schedule['9']).to.have.length(0);
     })
 });

@@ -6,20 +6,20 @@ const PowerPlan = require('./powerplan');
 
 class Reader {
     static read(file) {
-        const devices = [];
-        const rates = [];
-        const data = fs.readFileSync(file);
-        const input = JSON.parse(data);
+        const text = fs.readFileSync(file);
+        const input = JSON.parse(text);
+        return this.materialize(input);
+    }
 
-        input.devices.forEach(device => {
-            devices.push(new Device(device.id, device.name, parseFloat(device.power),
-                parseInt(device.duration),
-                device.mode));
-        });
+    static materialize(input) {
+        const devices = input.devices.map(device =>
+            new Device(device.id, device.name, parseFloat(device.power), parseInt(device.duration), device.mode)
+        );
 
-        input.rates.forEach(rate => {
-            rates.push(new Rate(parseInt(rate.from), parseInt(rate.to), parseFloat(rate.value)));
-        });
+
+        const rates = input.rates.map(rate =>
+            new Rate(parseInt(rate.from), parseInt(rate.to), parseFloat(rate.value))
+        );
 
         return {
             devices: devices,

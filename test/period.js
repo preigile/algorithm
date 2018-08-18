@@ -33,25 +33,69 @@ describe('Period', function () {
 
     it('being daily is extendable', function () {
         const period = new Period(10, 15);
-        period.extend(2);
 
+        period.extend(2);
+        expect(period.from).to.equal(10);
+        expect(period.to).to.equal(17);
+
+        period.extend(0);
         expect(period.from).to.equal(10);
         expect(period.to).to.equal(17);
     });
 
     it('being nightly is extendable', function () {
         const period = new Period(21, 7);
-        period.extend(2);
 
+        period.extend(2);
+        expect(period.from).to.equal(21);
+        expect(period.to).to.equal(9);
+
+        period.extend(0);
         expect(period.from).to.equal(21);
         expect(period.to).to.equal(9);
     });
 
     it('being daily is extendable to nightly', function () {
         const period = new Period(20, 22);
-        period.extend(5);
 
+        period.extend(5);
         expect(period.from).to.equal(20);
         expect(period.to).to.equal(3);
-    })
+    });
+
+    it('being daily is subtractable', function () {
+        const period = new Period(10, 18);
+
+        period.subtract(5);
+        expect(period.from).to.equal(10);
+        expect(period.to).to.equal(13);
+
+        period.subtract(0);
+        expect(period.from).to.equal(10);
+        expect(period.to).to.equal(13);
+    });
+
+    it('being nightly is subtractable', function () {
+        const period = new Period(18, 8);
+
+        period.subtract(5);
+        expect(period.from).to.equal(18);
+        expect(period.to).to.equal(3);
+
+        period.subtract(0);
+        expect(period.from).to.equal(18);
+        expect(period.to).to.equal(3);
+    });
+
+    it('being nightly is subtractable to daily', function () {
+        const period = new Period(22, 2);
+
+        period.subtract(1);
+        expect(period.from).to.equal(22);
+        expect(period.to).to.equal(1);
+
+        period.subtract(2);
+        expect(period.from).to.equal(22);
+        expect(period.to).to.equal(23);
+    });
 });

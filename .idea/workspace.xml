@@ -2,8 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ac058ca0-7c34-462e-924a-39ed58f9dff2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/test/device.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/calculator.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/calculator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/device.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/device.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/period.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/period.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/powerplan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/powerplan.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/reader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/calculator.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/calculator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/period.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/period.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/powerplan.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/powerplan.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -27,7 +35,7 @@
         <counts>
           <entry key="gitignore" value="4" />
           <entry key="html" value="1" />
-          <entry key="js" value="22" />
+          <entry key="js" value="27" />
           <entry key="json" value="3" />
           <entry key="less" value="1" />
           <entry key="md" value="1" />
@@ -38,7 +46,7 @@
           <entry key="Git file" value="4" />
           <entry key="HTML" value="1" />
           <entry key="JSON" value="3" />
-          <entry key="JavaScript" value="22" />
+          <entry key="JavaScript" value="27" />
           <entry key="Less" value="1" />
           <entry key="PLAIN_TEXT" value="1" />
         </counts>
@@ -48,7 +56,7 @@
           <entry key="css" value="44" />
           <entry key="gitignore" value="42" />
           <entry key="html" value="70" />
-          <entry key="js" value="2250" />
+          <entry key="js" value="2313" />
           <entry key="json" value="48" />
           <entry key="less" value="1" />
           <entry key="md" value="8" />
@@ -61,7 +69,7 @@
           <entry key="Git file" value="42" />
           <entry key="HTML" value="70" />
           <entry key="JSON" value="48" />
-          <entry key="JavaScript" value="2252" />
+          <entry key="JavaScript" value="2315" />
           <entry key="Less" value="1" />
           <entry key="PLAIN_TEXT" value="8" />
         </counts>
@@ -82,8 +90,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/calculator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="36" column="36" selection-start-line="36" selection-start-column="36" selection-end-line="36" selection-end-column="36" />
+            <state relative-caret-position="237">
+              <caret line="88" column="59" selection-start-line="88" selection-start-column="59" selection-end-line="88" selection-end-column="59" />
             </state>
           </provider>
         </entry>
@@ -91,8 +99,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/period.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+            <state relative-caret-position="225">
+              <caret line="15" selection-start-line="15" selection-end-line="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/powerplan.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="13" selection-start-line="13" selection-end-line="13" />
             </state>
           </provider>
         </entry>
@@ -100,8 +117,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/calculator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="402">
-              <caret line="27" column="61" selection-start-line="27" selection-start-column="61" selection-end-line="27" selection-end-column="61" />
+            <state relative-caret-position="366">
+              <caret line="49" column="14" lean-forward="true" selection-start-line="49" selection-start-column="14" selection-end-line="49" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/device.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="414">
+              <caret line="52" column="7" selection-start-line="52" selection-start-column="7" selection-end-line="52" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -109,8 +135,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/period.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-93">
-              <caret line="15" column="45" lean-forward="true" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
+            <state relative-caret-position="507">
+              <caret line="99" column="7" selection-start-line="99" selection-start-column="7" selection-end-line="99" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -118,26 +144,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/powerplan.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/rate.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="41" lean-forward="true" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="362">
-              <caret line="58" column="34" selection-start-line="58" selection-start-column="34" selection-end-line="58" selection-end-column="34" />
+            <state relative-caret-position="450">
+              <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
             </state>
           </provider>
         </entry>
@@ -154,8 +162,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/reader.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+            <state relative-caret-position="450">
+              <caret line="30" selection-start-line="30" selection-end-line="30" />
             </state>
           </provider>
         </entry>
@@ -175,13 +183,14 @@
       <find>getRate</find>
       <find>powerplan</find>
       <find>var</find>
-      <find>+</find>
       <find>each</find>
+      <find>+</find>
     </findStrings>
     <replaceStrings>
       <replace>let</replace>
       <replace>device</replace>
       <replace>const</replace>
+      <replace>rate</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -204,16 +213,17 @@
         <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/devices.js" />
-        <option value="$PROJECT_DIR$/src/device.js" />
         <option value="$PROJECT_DIR$/test/test.js" />
-        <option value="$PROJECT_DIR$/src/powerplan.js" />
-        <option value="$PROJECT_DIR$/test/powerplan.js" />
         <option value="$PROJECT_DIR$/test/rate.js" />
         <option value="$PROJECT_DIR$/test/reader.js" />
-        <option value="$PROJECT_DIR$/src/period.js" />
         <option value="$PROJECT_DIR$/src/rate.js" />
+        <option value="$PROJECT_DIR$/src/device.js" />
+        <option value="$PROJECT_DIR$/src/powerplan.js" />
+        <option value="$PROJECT_DIR$/src/period.js" />
         <option value="$PROJECT_DIR$/test/calculator.js" />
+        <option value="$PROJECT_DIR$/test/device.js" />
         <option value="$PROJECT_DIR$/test/period.js" />
+        <option value="$PROJECT_DIR$/test/powerplan.js" />
         <option value="$PROJECT_DIR$/src/reader.js" />
         <option value="$PROJECT_DIR$/src/calculator.js" />
       </list>
@@ -320,7 +330,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21538000" />
+    <option name="totallyTimeSpent" value="23553000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="824" extended-state="6" />
@@ -400,27 +410,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/device.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/powerplan.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/powerplan.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/rate.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
@@ -442,13 +431,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/period.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/rate.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -456,31 +438,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/calculator.js">
+    <entry file="file://$PROJECT_DIR$/src/powerplan.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="27" column="61" selection-start-line="27" selection-start-column="61" selection-end-line="27" selection-end-column="61" />
+        <state relative-caret-position="195">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/device.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/period.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/device.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="52" column="7" selection-start-line="52" selection-start-column="7" selection-end-line="52" selection-end-column="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/period.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-93">
-          <caret line="15" column="45" lean-forward="true" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
+        <state relative-caret-position="507">
+          <caret line="99" column="7" selection-start-line="99" selection-start-column="7" selection-end-line="99" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/powerplan.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/reader.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+        <state relative-caret-position="450">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/calculator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="49" column="14" lean-forward="true" selection-start-line="49" selection-start-column="14" selection-end-line="49" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/calculator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="36" column="36" selection-start-line="36" selection-start-column="36" selection-end-line="36" selection-end-column="36" />
+        <state relative-caret-position="237">
+          <caret line="88" column="59" selection-start-line="88" selection-start-column="59" selection-end-line="88" selection-end-column="59" />
         </state>
       </provider>
     </entry>
