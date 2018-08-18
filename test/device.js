@@ -2,6 +2,7 @@ const expect = require('chai').expect;
 
 const Device = require('../src/device');
 const Period = require('../src/period');
+const Rate = require('../src/rate');
 
 describe('Device', function () {
     it('should have daily allowed period', function () {
@@ -58,5 +59,12 @@ describe('Device', function () {
 
         expect(period.from).to.equals(0);
         expect(period.to).to.equals(23);
-    })
+    });
+
+    it('should calculate hourly energy consumption', function () {
+        const device = new Device('id', 'name', 50, 3);
+        const rate = new Rate(0, 23, 5.0);
+
+        expect(device.hourlyConsumption(rate)).to.be.closeTo(0.25, 0.001);
+    });
 });

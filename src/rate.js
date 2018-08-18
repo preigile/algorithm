@@ -9,6 +9,10 @@ class Rate {
     includes(hour) {
         return this.period.includes(hour);
     }
+
+    hourlyConsumption(device) {
+        return this.value * device.power / 1000.0;
+    }
 }
 
 module.exports = Rate;

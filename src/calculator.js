@@ -3,6 +3,15 @@ const Period = require('./period');
 const Device = require('./device');
 const Rate = require('./rate');
 
+Array.prototype.groupBy = property => {
+    return this.reduce((groups, each) => {
+        const value = each[property];
+        groups[value] = groups[value] || [];
+        groups[value].push(each);
+        return groups;
+    }, {})
+};
+
 class ScheduledDevice {
     constructor(device, hour) {
         this.device = device;
@@ -67,7 +76,7 @@ class Calculator {
             deviceIds.forEach(id => {
                 const device = this.devices.find(device => device.id === id);
                 let current = consumptionPerDevice[id];
-                let consumption = rate.value * device.power / 1000.0;
+                let consumption = device.hourlyConsumption(rate);
 
                 consumptionPerDevice[id] = current ? current + consumption : consumption;
                 total += consumption;
@@ -100,6 +109,30 @@ class Calculator {
         //         }
         //     });
         // });
+    }
+
+    calculateDeviceConsumption(hour, device, scheduledDevices) {
+        const allowedStartPeriod = device.allowedStartPeriod;
+
+        if (allowedStartPeriod.includes(hour)) {
+            const currentRate = this.powerplan.getRate(hour);
+            let alreadyConsumed = 0.0;
+
+            scheduledDevices.forEach(each => {
+                alreadyConsumed += each.hourlyConsumption(currentRate);
+            });
+
+            const consumption = device.hourlyConsumption(currentRate);
+
+            if(alreadyConsumed + consumption > this.powerplan.maxPower) {
+                return null;
+            }
+
+            return consumption;
+
+        } else {
+            return null;
+        }
     }
 }
 

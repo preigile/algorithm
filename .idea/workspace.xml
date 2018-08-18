@@ -2,16 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ac058ca0-7c34-462e-924a-39ed58f9dff2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/test/device.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/calculator.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/calculator.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/device.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/device.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/period.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/period.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/powerplan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/powerplan.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/calculator.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/calculator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/period.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/period.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/powerplan.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/powerplan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rate.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/rate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/device.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/device.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/rate.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/rate.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -35,7 +30,7 @@
         <counts>
           <entry key="gitignore" value="4" />
           <entry key="html" value="1" />
-          <entry key="js" value="27" />
+          <entry key="js" value="29" />
           <entry key="json" value="3" />
           <entry key="less" value="1" />
           <entry key="md" value="1" />
@@ -46,7 +41,7 @@
           <entry key="Git file" value="4" />
           <entry key="HTML" value="1" />
           <entry key="JSON" value="3" />
-          <entry key="JavaScript" value="27" />
+          <entry key="JavaScript" value="29" />
           <entry key="Less" value="1" />
           <entry key="PLAIN_TEXT" value="1" />
         </counts>
@@ -56,7 +51,7 @@
           <entry key="css" value="44" />
           <entry key="gitignore" value="42" />
           <entry key="html" value="70" />
-          <entry key="js" value="2313" />
+          <entry key="js" value="2334" />
           <entry key="json" value="48" />
           <entry key="less" value="1" />
           <entry key="md" value="8" />
@@ -69,7 +64,7 @@
           <entry key="Git file" value="42" />
           <entry key="HTML" value="70" />
           <entry key="JSON" value="48" />
-          <entry key="JavaScript" value="2315" />
+          <entry key="JavaScript" value="2336" />
           <entry key="Less" value="1" />
           <entry key="PLAIN_TEXT" value="8" />
         </counts>
@@ -78,20 +73,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/reader.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/calculator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="88" column="59" selection-start-line="88" selection-start-column="59" selection-end-line="88" selection-end-column="59" />
+            <state relative-caret-position="372">
+              <caret line="128" column="13" lean-forward="true" selection-start-line="128" selection-start-column="13" selection-end-line="128" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -126,8 +112,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/device.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="52" column="7" selection-start-line="52" selection-start-column="7" selection-end-line="52" selection-end-column="7" />
+            <state relative-caret-position="432">
+              <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/rate.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="447">
+              <caret line="35" column="55" lean-forward="true" selection-start-line="35" selection-start-column="55" selection-end-line="35" selection-end-column="55" />
             </state>
           </provider>
         </entry>
@@ -153,8 +148,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/rate.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
+            <state relative-caret-position="270">
+              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
             </state>
           </provider>
         </entry>
@@ -214,17 +209,17 @@
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/devices.js" />
         <option value="$PROJECT_DIR$/test/test.js" />
-        <option value="$PROJECT_DIR$/test/rate.js" />
         <option value="$PROJECT_DIR$/test/reader.js" />
-        <option value="$PROJECT_DIR$/src/rate.js" />
-        <option value="$PROJECT_DIR$/src/device.js" />
         <option value="$PROJECT_DIR$/src/powerplan.js" />
         <option value="$PROJECT_DIR$/src/period.js" />
         <option value="$PROJECT_DIR$/test/calculator.js" />
-        <option value="$PROJECT_DIR$/test/device.js" />
         <option value="$PROJECT_DIR$/test/period.js" />
         <option value="$PROJECT_DIR$/test/powerplan.js" />
         <option value="$PROJECT_DIR$/src/reader.js" />
+        <option value="$PROJECT_DIR$/src/device.js" />
+        <option value="$PROJECT_DIR$/src/rate.js" />
+        <option value="$PROJECT_DIR$/test/device.js" />
+        <option value="$PROJECT_DIR$/test/rate.js" />
         <option value="$PROJECT_DIR$/src/calculator.js" />
       </list>
     </option>
@@ -330,7 +325,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23553000" />
+    <option name="totallyTimeSpent" value="24193000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="824" extended-state="6" />
@@ -410,13 +405,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/rate.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="41" lean-forward="true" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="362">
@@ -431,13 +419,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/rate.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/powerplan.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -445,24 +426,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/device.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/period.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="15" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/device.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="52" column="7" selection-start-line="52" selection-start-column="7" selection-end-line="52" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -494,10 +461,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/device.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/device.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/rate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="447">
+          <caret line="35" column="55" lean-forward="true" selection-start-line="35" selection-start-column="55" selection-end-line="35" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/calculator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="88" column="59" selection-start-line="88" selection-start-column="59" selection-end-line="88" selection-end-column="59" />
+        <state relative-caret-position="372">
+          <caret line="128" column="13" lean-forward="true" selection-start-line="128" selection-start-column="13" selection-end-line="128" selection-end-column="13" />
         </state>
       </provider>
     </entry>

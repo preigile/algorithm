@@ -28,6 +28,10 @@ class Device {
 
         return this.mode ? period : new Period(0, 23);
     }
+
+    hourlyConsumption(rate) {
+        return rate.hourlyConsumption(this);
+    }
 }
 
 module.exports = Device;
