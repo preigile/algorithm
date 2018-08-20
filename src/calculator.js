@@ -1,16 +1,4 @@
-const PowerPlan = require('./powerplan');
 const Period = require('./period');
-const Device = require('./device');
-const Rate = require('./rate');
-
-Array.prototype.groupBy = property => {
-    return this.reduce((groups, each) => {
-        const value = each[property];
-        groups[value] = groups[value] || [];
-        groups[value].push(each);
-        return groups;
-    }, {})
-};
 
 class ScheduledDevice {
     constructor(device, hour) {
@@ -21,7 +9,10 @@ class ScheduledDevice {
 
     includes(hour) {
         return this.period.includes(hour);
+    }
 
+    get isScheduledToAllowedPeriod() {
+        return this.device.allowedStartPeriod.includes(this.period.from);
     }
 }
 
@@ -41,7 +32,6 @@ class Calculator {
     }
 
     calculateSchedule() {
-        const schedule = {};
         const scheduledDevices = [];
         const unscheduledDevices = [];
 
@@ -53,8 +43,19 @@ class Calculator {
             }
         });
 
+        let result = {
+            total: Number.MAX_VALUE,
+            scheduledDevices: []
+        };
+
         unscheduledDevices.sort((a, b) => a.energy <= b.energy);
-        this.scheduleDevices(unscheduledDevices, scheduledDevices);
+        this.scheduleDevices(unscheduledDevices, scheduledDevices, result);
+
+        return this.calculateScheduleFromDevices(result.scheduledDevices);
+    }
+
+    calculateScheduleFromDevices(scheduledDevices) {
+        const schedule = {};
 
         [...Array(24).keys()].forEach(hour => {
             schedule[hour] = scheduledDevices
@@ -75,8 +76,8 @@ class Calculator {
 
             deviceIds.forEach(id => {
                 const device = this.devices.find(device => device.id === id);
-                let current = consumptionPerDevice[id];
                 let consumption = device.hourlyConsumption(rate);
+                let current = consumptionPerDevice[id];
 
                 consumptionPerDevice[id] = current ? current + consumption : consumption;
                 total += consumption;
@@ -89,47 +90,44 @@ class Calculator {
         };
     }
 
-    scheduleDevices(devices, scheduledDevices) {
-        devices.sort((a, b) => a.energy <= b.energy);
+    scheduleDevices(devices, scheduledDevices, result) {
+        if (devices.length === 0) {
+            const energy = this.calculateEnergy(scheduledDevices);
 
-        const sortedRates = this.powerplan.getSortedRates();
-        devices.forEach(device => {
-            const allowedStartPeriod = device.allowedStartPeriod;
-            scheduledDevices.push(new ScheduledDevice(device, allowedStartPeriod.from));
+            if (energy && energy < result.total) {
+                result.total = energy;
+                result.scheduledDevices = scheduledDevices;
+
+                return;
+            } else {
+                return;
+            }
+        }
+
+        devices.forEach((device, index) => {
+            [...Array(24).keys()].forEach(hour => {
+                const s = scheduledDevices.slice(0);
+                const d = devices.slice(0);
+                d.splice(index, 1);
+                const scheduledDevice = new ScheduledDevice(device, hour);
+
+                if (!scheduledDevice.isScheduledToAllowedPeriod) {
+                    return;
+                }
+
+                s.push(scheduledDevice);
+                this.scheduleDevices(d, s, result);
+            });
         });
-
-        // devices.forEach(device => {
-        //     [...Array(24).keys()].forEach(hour => {
-        //         const consumption = this.calculateDeviceConsumption(device, hour, scheduledDevices);
-        //         // Truthy consumption means that device can be scheduled
-        //         if (consumption) {
-        //             scheduledDevices.push(new ScheduledDevice(device, hour));
-        //             const toSchedule = devices.filter(each => each.id !== device.id);
-        //             this.scheduleDevices(toSchedule, scheduledDevices);
-        //         }
-        //     });
-        // });
     }
 
-    calculateDeviceConsumption(hour, device, scheduledDevices) {
-        const allowedStartPeriod = device.allowedStartPeriod;
+    calculateEnergy(scheduledDevices) {
+        const schedule = this.calculateScheduleFromDevices(scheduledDevices);
 
-        if (allowedStartPeriod.includes(hour)) {
-            const currentRate = this.powerplan.getRate(hour);
-            let alreadyConsumed = 0.0;
+        if (schedule) {
+            const data = this.calculateConsumedEnergy(schedule);
 
-            scheduledDevices.forEach(each => {
-                alreadyConsumed += each.hourlyConsumption(currentRate);
-            });
-
-            const consumption = device.hourlyConsumption(currentRate);
-
-            if(alreadyConsumed + consumption > this.powerplan.maxPower) {
-                return null;
-            }
-
-            return consumption;
-
+            return data.value;
         } else {
             return null;
         }

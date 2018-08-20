@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ac058ca0-7c34-462e-924a-39ed58f9dff2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/calculator.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/calculator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/device.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/device.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rate.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/rate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/device.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/device.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/rate.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/rate.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -51,7 +47,7 @@
           <entry key="css" value="44" />
           <entry key="gitignore" value="42" />
           <entry key="html" value="70" />
-          <entry key="js" value="2334" />
+          <entry key="js" value="2375" />
           <entry key="json" value="48" />
           <entry key="less" value="1" />
           <entry key="md" value="8" />
@@ -64,7 +60,7 @@
           <entry key="Git file" value="42" />
           <entry key="HTML" value="70" />
           <entry key="JSON" value="48" />
-          <entry key="JavaScript" value="2336" />
+          <entry key="JavaScript" value="2377" />
           <entry key="Less" value="1" />
           <entry key="PLAIN_TEXT" value="8" />
         </counts>
@@ -76,8 +72,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/calculator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="372">
-              <caret line="128" column="13" lean-forward="true" selection-start-line="128" selection-start-column="13" selection-end-line="128" selection-end-column="13" />
+            <state relative-caret-position="237">
+              <caret line="115" column="17" lean-forward="true" selection-start-line="115" selection-start-column="17" selection-end-line="115" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -325,7 +321,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24193000" />
+    <option name="totallyTimeSpent" value="24937000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="824" extended-state="6" />
@@ -491,8 +487,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/calculator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="128" column="13" lean-forward="true" selection-start-line="128" selection-start-column="13" selection-end-line="128" selection-end-column="13" />
+        <state relative-caret-position="237">
+          <caret line="115" column="17" lean-forward="true" selection-start-line="115" selection-start-column="17" selection-end-line="115" selection-end-column="17" />
         </state>
       </provider>
     </entry>
