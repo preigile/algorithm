@@ -1,22 +1,11 @@
+const fs = require('fs');
 const expect = require('chai').expect;
 
 const Calculator = require('../src/calculator');
-const PowerPlan = require('../src/powerplan');
-const Device = require('../src/device');
 const Reader = require('../src/reader');
-const Rate = require('../src/rate');
+const Writer = require('../src/writer');
 
-describe('Calculator on full input data', function () {
-    const data = Reader.read('test/data/input.json');
-    const calculator = new Calculator(data.powerplan, data.devices);
-
-    it('should calculate total consumed energy', function () {
-        const output = calculator.calculate();
-        expect(output.consumedEnergy.value).to.be.closeTo(38.939, 0.001);
-    })
-});
-
-describe('Calculator on small input data', function () {
+describe('Calculator', function () {
     function calculate(input) {
         const data = Reader.materialize(input);
         const calculator = new Calculator(data.powerplan, data.devices);
@@ -74,5 +63,42 @@ describe('Calculator on small input data', function () {
         expect(output.schedule['7']).to.include("d0");
         expect(output.schedule['8']).to.include("d0");
         expect(output.schedule['9']).to.have.length(0);
+    });
+});
+
+describe('Calculator on sample input data', function () {
+    const data = Reader.read('test/data/input.json');
+    const calculator = new Calculator(data.powerplan, data.devices);
+    const actual = calculator.calculate();
+    const expected = JSON.parse(fs.readFileSync('test/data/output-expected.json'));
+
+    it('should calculate total consumed energy', function () {
+        expect(actual).to.not.null;
+        expect(actual.consumedEnergy.value).to.be.closeTo(expected.consumedEnergy.value, 0.001);
+    });
+
+    it('should calculate consumed energy per device', function () {
+        expect(actual).to.not.null;
+        const expectedDevices = expected.consumedEnergy.devices;
+        const actualDevices = actual.consumedEnergy.devices;
+
+        for (let id in expectedDevices) {
+            expect(actualDevices).to.haveOwnProperty(id);
+            expect(actualDevices[id]).to.be.closeTo(expectedDevices[id], 0.001);
+        }
+    });
+
+    it('should calculate correct schedule', function () {
+        expect(actual).to.not.null;
+
+        for (let hour in expected.schedule) {
+            expect(actual.schedule[hour], "Hour " + hour).to.have.members(expected.schedule[hour]);
+        }
+    });
+
+    it('Can write output data', function () {
+        expect(actual).to.not.null;
+
+        new Writer(actual).write('test/data/output-actual.json');
     })
 });

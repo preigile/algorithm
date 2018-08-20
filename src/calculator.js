@@ -1,4 +1,5 @@
 const Period = require('./period');
+const Device = require('./device');
 
 class ScheduledDevice {
     constructor(device, hour) {
@@ -11,7 +12,7 @@ class ScheduledDevice {
         return this.period.includes(hour);
     }
 
-    get isScheduledToAllowedPeriod() {
+    get isValid() {
         return this.device.allowedStartPeriod.includes(this.period.from);
     }
 }
@@ -27,110 +28,112 @@ class Calculator {
 
         return {
             "schedule": schedule,
-            "consumedEnergy": this.calculateConsumedEnergy(schedule)
+            "consumedEnergy": this.calculatePrice(schedule)
         };
     }
 
     calculateSchedule() {
         const scheduledDevices = [];
-        const unscheduledDevices = [];
+        let devices = [];
 
-        this.devices.forEach(device => {
-            if (device.duration === 24) {
-                scheduledDevices.push(new ScheduledDevice(device, 0));
-            } else {
-                unscheduledDevices.push(device);
-            }
-        });
+        // this.devices.forEach(device => {
+        //     if (device.isAllNight) {
+        //         scheduledDevices.push(new ScheduledDevice(device, 0));
+        //     } else {
+        //         devices.push(device);
+        //     }
+        // });
 
-        let result = {
+        devices = this.devices;
+
+        const result = {
             total: Number.MAX_VALUE,
             scheduledDevices: []
         };
 
-        unscheduledDevices.sort((a, b) => a.energy <= b.energy);
-        this.scheduleDevices(unscheduledDevices, scheduledDevices, result);
+        devices.sort((a, b) => a.energy <= b.energy);
+        this.scheduleDevices(devices, scheduledDevices, result);
 
-        return this.calculateScheduleFromDevices(result.scheduledDevices);
+        return result.scheduledDevices
+            ? this.calculateScheduleFromDevices(result.scheduledDevices)
+            : null;
     }
 
     calculateScheduleFromDevices(scheduledDevices) {
         const schedule = {};
 
-        [...Array(24).keys()].forEach(hour => {
-            schedule[hour] = scheduledDevices
-                .filter(each => each.includes(hour))
-                .map(each => each.device.id);
-        });
+        for (let hour = 0; hour <= 23; hour++) {
+            const runningDevices = scheduledDevices.filter(each => each.includes(hour));
+            const power = runningDevices.map(each => each.device.power).reduce((a, b) => a + b, 0);
+
+            if (power > this.powerplan.maxPower) {
+                return null;
+            }
+
+            schedule[hour] = runningDevices.map(each => each.device.id);
+        }
 
         return schedule;
     }
 
-    calculateConsumedEnergy(schedule) {
+    calculatePrice(schedule) {
         let total = 0.0;
-        const consumptionPerDevice = {};
+        const pricePerDevice = {};
 
         for (let hour in schedule) {
-            let deviceIds = schedule[hour];
-            let rate = this.powerplan.getRate(hour);
+            const deviceIds = schedule[hour];
+            const rate = this.powerplan.getRate(hour);
 
             deviceIds.forEach(id => {
                 const device = this.devices.find(device => device.id === id);
-                let consumption = device.hourlyConsumption(rate);
-                let current = consumptionPerDevice[id];
+                const price = device.hourlyPrice(rate);
+                const current = pricePerDevice[id];
 
-                consumptionPerDevice[id] = current ? current + consumption : consumption;
-                total += consumption;
+                pricePerDevice[id] = current ? current + price : price;
+                total += price;
             });
         }
 
         return {
             "value": total,
-            "devices": consumptionPerDevice
+            "devices": pricePerDevice
         };
     }
 
     scheduleDevices(devices, scheduledDevices, result) {
-        if (devices.length === 0) {
-            const energy = this.calculateEnergy(scheduledDevices);
+        if (devices.length === 0 && scheduledDevices.length === this.devices.length) {
+            const price = this.calculateTotalPrice(scheduledDevices);
 
-            if (energy && energy < result.total) {
-                result.total = energy;
+            if (price && price < result.total) {
+                result.total = price;
                 result.scheduledDevices = scheduledDevices;
-
-                return;
-            } else {
-                return;
             }
-        }
+        } else {
+            devices.forEach((device, index) => {
+                const processHour = hour => {
+                    const scheduledDevicesCopy = scheduledDevices.slice(0);
+                    const devicesCopy = devices.slice(0);
+                    devicesCopy.splice(index, 1);
+                    const scheduledDevice = new ScheduledDevice(device, hour);
 
-        devices.forEach((device, index) => {
-            [...Array(24).keys()].forEach(hour => {
-                const s = scheduledDevices.slice(0);
-                const d = devices.slice(0);
-                d.splice(index, 1);
-                const scheduledDevice = new ScheduledDevice(device, hour);
+                    if (!scheduledDevice.isValid) {
+                        scheduledDevicesCopy.push(scheduledDevice);
+                        this.scheduleDevices(devicesCopy, scheduledDevicesCopy, result);
+                    }
+                };
 
-                if (!scheduledDevice.isScheduledToAllowedPeriod) {
-                    return;
+                if (device.isAllNight) {
+                    processHour(0);
+                } else {
+                    device.allowedStartPeriod.range.forEach(processHour);
                 }
-
-                s.push(scheduledDevice);
-                this.scheduleDevices(d, s, result);
             });
-        });
+        }
     }
 
-    calculateEnergy(scheduledDevices) {
+    calculateTotalPrice(scheduledDevices) {
         const schedule = this.calculateScheduleFromDevices(scheduledDevices);
-
-        if (schedule) {
-            const data = this.calculateConsumedEnergy(schedule);
-
-            return data.value;
-        } else {
-            return null;
-        }
+        return schedule ? this.calculatePrice(schedule).value : null;
     }
 }
 

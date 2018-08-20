@@ -10,7 +10,7 @@ class Rate {
         return this.period.includes(hour);
     }
 
-    hourlyConsumption(device) {
+    hourlyPrice(device) {
         return this.value * device.power / 1000.0;
     }
 }

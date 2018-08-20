@@ -14,23 +14,27 @@ class Device {
     }
 
 
-    get allowedPeriod() {
+    get allowedWorkPeriod() {
         if (this.mode) {
             // TODO: Check for values other than 'day' or 'night'
             return this.mode === 'day' ? new Period(7, 21) : new Period(21, 7);
         } else {
-            return new Period(0, 23);
+            return new Period(0, 0);
         }
     }
 
     get allowedStartPeriod() {
-        const period = this.allowedPeriod.subtract(this.duration);
+        const period = this.allowedWorkPeriod.subtract(this.duration);
 
         return this.mode ? period : new Period(0, 23);
     }
 
-    hourlyConsumption(rate) {
-        return rate.hourlyConsumption(this);
+    get isAllNight() {
+        return this.allowedWorkPeriod.isAllNight;
+    }
+
+    hourlyPrice(rate) {
+        return rate.hourlyPrice(this);
     }
 }
 

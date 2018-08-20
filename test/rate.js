@@ -36,6 +36,6 @@ describe('Rate', function () {
         const device = new Device('id', 'name', 50, 3);
         const rate = new Rate(0, 23, 5.0);
 
-        expect(rate.hourlyConsumption(device)).to.be.closeTo(0.25, 0.001);
+        expect(rate.hourlyPrice(device)).to.be.closeTo(0.25, 0.001);
     })
 });

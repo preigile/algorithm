@@ -11,12 +11,6 @@ class PowerPlan {
 
         return rate ? rate : new Rate(hour, hour, 0.0);
     }
-
-    getSortedRates() {
-        const rates = this.rates.slice(0);
-
-        return rates.sort((a, b) => a.value >= b.value);
-    }
 }
 
 module.exports = PowerPlan;
