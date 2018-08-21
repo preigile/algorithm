@@ -64,6 +64,24 @@ describe('Calculator', function () {
         expect(output.schedule['8']).to.include("d0");
         expect(output.schedule['9']).to.have.length(0);
     });
+
+    it('should take into account the max power', function () {
+        const input = {
+            "devices": [
+                {"id": "d0", "name": "d0", "power": 10, "duration": 1, "mode": "day"},
+                {"id": "d1", "name": "d1", "power": 20, "duration": 1, "mode": "day"}
+            ],
+            "rates": [
+                {"from": 7, "to": 8, "value": 1},
+                {"from": 8, "to": 7, "value": 2}
+            ],
+            "maxPower": 25
+        };
+
+        const output = calculate(input);
+        expect(output.schedule['7'], "Hour 7").to.have.members(['d1']);
+        expect(output.schedule['8'], "Hour 8").to.have.members(['d0']);
+    })
 });
 
 describe('Calculator on sample input data', function () {
@@ -92,13 +110,13 @@ describe('Calculator on sample input data', function () {
         expect(actual).to.not.null;
 
         for (let hour in expected.schedule) {
-            expect(actual.schedule[hour], "Hour " + hour).to.have.members(expected.schedule[hour]);
+            expect(actual.schedule[hour], "Hour " + hour ).to.have.members(expected.schedule[hour]);
         }
     });
-
-    it('Can write output data', function () {
-        expect(actual).to.not.null;
-
-        new Writer(actual).write('test/data/output-actual.json');
-    })
+    //
+    // it('can write output data', function () {
+    //     expect(actual).to.not.null;
+    //
+    //     new Writer(actual).write('test/data/output-actual.json');
+    // })
 });

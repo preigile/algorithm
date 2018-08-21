@@ -51,7 +51,6 @@ class Calculator {
             scheduledDevices: []
         };
 
-        devices.sort((a, b) => a.energy <= b.energy);
         this.scheduleDevices(devices, scheduledDevices, result);
 
         return result.scheduledDevices
