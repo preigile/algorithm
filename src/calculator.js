@@ -36,15 +36,13 @@ class Calculator {
         const scheduledDevices = [];
         let devices = [];
 
-        // this.devices.forEach(device => {
-        //     if (device.isAllNight) {
-        //         scheduledDevices.push(new ScheduledDevice(device, 0));
-        //     } else {
-        //         devices.push(device);
-        //     }
-        // });
-
-        devices = this.devices;
+        this.devices.forEach(device => {
+            if (device.isAllNight) {
+                scheduledDevices.push(new ScheduledDevice(device, 0));
+            } else {
+                devices.push(device);
+            }
+        });
 
         const result = {
             total: Number.MAX_VALUE,
@@ -109,7 +107,7 @@ class Calculator {
             }
         } else {
             devices.forEach((device, index) => {
-                const processHour = hour => {
+                device.allowedStartPeriod.range.forEach(hour => {
                     const scheduledDevicesCopy = scheduledDevices.slice(0);
                     const devicesCopy = devices.slice(0);
                     devicesCopy.splice(index, 1);
@@ -119,13 +117,7 @@ class Calculator {
                         scheduledDevicesCopy.push(scheduledDevice);
                         this.scheduleDevices(devicesCopy, scheduledDevicesCopy, result);
                     }
-                };
-
-                if (device.isAllNight) {
-                    processHour(0);
-                } else {
-                    device.allowedStartPeriod.range.forEach(processHour);
-                }
+                });
             });
         }
     }

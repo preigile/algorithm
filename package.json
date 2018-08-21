@@ -1,7 +1,7 @@
 {
   "name": "algorithm",
   "version": "1.0.0",
-  "description": "The energy calculator",
+  "description": "The energy optimizer",
   "main": "index.js",
   "directories": {
     "test": "test"
