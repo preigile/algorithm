@@ -1,5 +1,3 @@
-const fs = require('fs');
-
 const Writer = require('./writer');
 const Reader = require('./reader');
 const Calculator = require('./calculator');

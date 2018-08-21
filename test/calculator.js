@@ -3,7 +3,6 @@ const expect = require('chai').expect;
 
 const Calculator = require('../src/calculator');
 const Reader = require('../src/reader');
-const Writer = require('../src/writer');
 
 describe('Calculator', function () {
     function calculate(input) {
@@ -169,10 +168,4 @@ describe('Calculator on sample input data', function () {
             expect(actual.schedule[hour], "Hour " + hour).to.have.members(expected.schedule[hour]);
         }
     });
-    //
-    // it('can write output data', function () {
-    //     expect(actual).to.not.null;
-    //
-    //     new Writer(actual).write('test/data/output-actual.json');
-    // })
 });

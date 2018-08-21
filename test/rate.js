@@ -1,7 +1,7 @@
 const expect = require('chai').expect;
 
 const Rate = require('../src/rate');
-var Device = require('../src/device');
+const Device = require('../src/device');
 
 describe('Rate', function () {
     it('being daily should include specific hour', function () {
@@ -37,5 +37,5 @@ describe('Rate', function () {
         const rate = new Rate(0, 23, 5.0);
 
         expect(rate.hourlyPrice(device)).to.be.closeTo(0.25, 0.001);
-    })
+    });
 });

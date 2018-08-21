@@ -1,5 +1,4 @@
 const Period = require('./period');
-const Device = require('./device');
 
 class ScheduledDevice {
     constructor(device, hour) {
@@ -20,18 +19,10 @@ class Calculator {
     }
 
     calculate() {
-        const schedule = this.calculateSchedule();
-
-        return {
-            "schedule": schedule,
-            "consumedEnergy": this.calculatePrice(schedule)
-        };
-    }
-
-    calculateSchedule() {
         const scheduledDevices = [];
         let devices = [];
 
+        // Optimization - first of all schedule all-night devices
         this.devices.forEach(device => {
             if (device.isAllNight) {
                 scheduledDevices.push(new ScheduledDevice(device, 0));
@@ -47,21 +38,18 @@ class Calculator {
 
         this.scheduleDevices(devices, scheduledDevices, result);
 
-        return result.scheduledDevices
-            ? this.calculateScheduleFromDevices(result.scheduledDevices)
-            : null;
+        return {
+            "schedule": this.calculateSchedule(result.scheduledDevices),
+            "consumedEnergy": this.calculatePrice(result.scheduledDevices)
+        };
     }
 
-    calculateScheduleFromDevices(scheduledDevices) {
+    // Build the schedule object based on scheduled devices
+    calculateSchedule(scheduledDevices) {
         const schedule = {};
 
         for (let hour = 0; hour <= 23; hour++) {
             const runningDevices = scheduledDevices.filter(each => each.includes(hour));
-            const power = runningDevices.map(each => each.device.power).reduce((a, b) => a + b, 0);
-
-            if (power > this.powerplan.maxPower) {
-                return null;
-            }
 
             schedule[hour] = runningDevices.map(each => each.device.id);
         }
@@ -69,58 +57,74 @@ class Calculator {
         return schedule;
     }
 
-    calculatePrice(schedule) {
-        let total = 0.0;
+    // Build the consumed energy object based on scheduled devices
+    calculatePrice(scheduledDevices) {
+        let totalPrice = 0.0;
         const pricePerDevice = {};
 
-        for (let hour in schedule) {
-            const deviceIds = schedule[hour];
+        for (let hour = 0; hour <= 23; hour++) {
             const rate = this.powerplan.getRate(hour);
+            let subtotal = 0;
+            let power = 0;
 
-            deviceIds.forEach(id => {
-                const device = this.devices.find(device => device.id === id);
-                const price = device.hourlyPrice(rate);
-                const current = pricePerDevice[id];
+            for (let i = 0; i < scheduledDevices.length; i++) {
+                const each = scheduledDevices[i];
 
-                pricePerDevice[id] = current ? current + price : price;
-                total += price;
-            });
+                if (each.includes(hour)) {
+                    const device = each.device;
+                    power += device.power;
+
+                    if (power > this.powerplan.maxPower) {
+                        return null;
+                    }
+
+                    const id = device.id;
+                    const price = device.hourlyPrice(rate);
+                    const current = pricePerDevice[id];
+
+                    pricePerDevice[id] = current ? current + price : price;
+                    subtotal += price;
+                }
+            }
+
+            totalPrice += subtotal;
         }
 
         return {
-            "value": total,
+            "value": totalPrice,
             "devices": pricePerDevice
         };
     }
 
     scheduleDevices(devices, scheduledDevices, result) {
-        if (devices.length === 0) {
-            const price = this.calculateTotalPrice(scheduledDevices);
+        const price = this.calculatePrice(scheduledDevices);
 
-            if (price && price < result.total) {
-                result.total = price;
-                result.scheduledDevices = scheduledDevices;
-            }
-        } else {
-            devices.forEach((device, index) => {
-                device.allowedStartPeriod.range.forEach(hour => {
-                    // Support edge case where there is no any rate for specific hour
-                    if (this.powerplan.getRate(hour)) {
-                        const scheduledDevicesCopy = scheduledDevices.slice(0);
-                        const devicesCopy = devices.slice(0);
-                        devicesCopy.splice(index, 1);
-
-                        scheduledDevicesCopy.push(new ScheduledDevice(device, hour));
-                        this.scheduleDevices(devicesCopy, scheduledDevicesCopy, result);
-                    }
-                });
-            });
+        if (price === null || price.value >= result.total) {
+            return;
         }
-    }
 
-    calculateTotalPrice(scheduledDevices) {
-        const schedule = this.calculateScheduleFromDevices(scheduledDevices);
-        return schedule ? this.calculatePrice(schedule).value : null;
+        if (devices.length === 0) {
+            result.total = price.value;
+            result.scheduledDevices = scheduledDevices;
+            return;
+        }
+
+        devices.forEach((device, index) => {
+            // We expect here that all-night devices were already scheduled,
+            // otherwise their allowed start period range here will have 24 items
+            // and lead to very inefficient calculation.
+            device.allowedStartPeriod.range.forEach(hour => {
+                // Support edge case where there is no any rate for specific hour
+                if (this.powerplan.getRate(hour)) {
+                    const scheduledDevicesCopy = scheduledDevices.slice(0);
+                    const devicesCopy = devices.slice(0);
+
+                    devicesCopy.splice(index, 1);
+                    scheduledDevicesCopy.push(new ScheduledDevice(device, hour));
+                    this.scheduleDevices(devicesCopy, scheduledDevicesCopy, result);
+                }
+            });
+        });
     }
 }
 

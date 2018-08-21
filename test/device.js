@@ -25,7 +25,7 @@ describe('Device', function () {
         const period = device.allowedWorkPeriod;
 
         expect(period.from).to.equals(0);
-        expect(period.to).to.equals(23);
+        expect(period.to).to.equals(0);
     });
 
     it('should have daily allowed start period', function () {

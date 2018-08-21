@@ -1,5 +1,3 @@
-const Rate = require('./rate');
-
 class PowerPlan {
     constructor(rates, maxPower) {
         this.rates = rates;
