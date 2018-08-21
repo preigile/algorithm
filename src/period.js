@@ -25,15 +25,11 @@ class Period {
     }
 
     get range() {
-        return this.isAllNight
+        return this.from === this.to
             ? [...Array(24).keys()]
             : this.from < this.to
                 ? [...Array(this.to - this.from).keys()].map(i => i + this.from)
                 : [...Array(24 - this.from).keys()].map(i => i + this.from).concat([...Array(this.to).keys()]);
-    }
-
-    get isAllNight() {
-        return this.from === this.to;
     }
 }
 

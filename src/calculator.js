@@ -11,10 +11,6 @@ class ScheduledDevice {
     includes(hour) {
         return this.period.includes(hour);
     }
-
-    get isValid() {
-        return this.device.allowedStartPeriod.includes(this.period.from);
-    }
 }
 
 class Calculator {
@@ -98,7 +94,7 @@ class Calculator {
     }
 
     scheduleDevices(devices, scheduledDevices, result) {
-        if (devices.length === 0 && scheduledDevices.length === this.devices.length) {
+        if (devices.length === 0) {
             const price = this.calculateTotalPrice(scheduledDevices);
 
             if (price && price < result.total) {
@@ -108,13 +104,13 @@ class Calculator {
         } else {
             devices.forEach((device, index) => {
                 device.allowedStartPeriod.range.forEach(hour => {
-                    const scheduledDevicesCopy = scheduledDevices.slice(0);
-                    const devicesCopy = devices.slice(0);
-                    devicesCopy.splice(index, 1);
-                    const scheduledDevice = new ScheduledDevice(device, hour);
+                    // Support edge case where there is no any rate for specific hour
+                    if (this.powerplan.getRate(hour)) {
+                        const scheduledDevicesCopy = scheduledDevices.slice(0);
+                        const devicesCopy = devices.slice(0);
+                        devicesCopy.splice(index, 1);
 
-                    if (!scheduledDevice.isValid) {
-                        scheduledDevicesCopy.push(scheduledDevice);
+                        scheduledDevicesCopy.push(new ScheduledDevice(device, hour));
                         this.scheduleDevices(devicesCopy, scheduledDevicesCopy, result);
                     }
                 });

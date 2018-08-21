@@ -57,7 +57,7 @@ describe('Device', function () {
         const period = device.allowedStartPeriod;
 
         expect(period.from).to.equals(0);
-        expect(period.to).to.equals(23);
+        expect(period.to).to.equals(0);
     });
 
     it('should calculate hourly energy consumption', function () {

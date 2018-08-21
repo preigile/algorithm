@@ -12,10 +12,10 @@ describe('Power plan', function () {
         expect(powerplan.getRate(22).value).to.equal(2.0);
     });
 
-    it('should return default rate', function () {
+    it('should return undefined for the undefined rate period', function () {
         const rates = [new Rate(6, 10, 1.0)];
         const powerplan = new PowerPlan(rates, 0);
 
-        expect(powerplan.getRate(22).value).to.equal(0.0);
+        expect(powerplan.getRate(22)).to.be.undefined;
     });
 });

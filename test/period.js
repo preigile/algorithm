@@ -131,18 +131,4 @@ describe('Period', function () {
         period = new Period(7, 7);
         expect(period.range).to.eql(expected);
     });
-
-    it('being 24h is all-nigth', function () {
-        let period = new Period(0, 0);
-        expect(period.isAllNight).to.true;
-
-        period = new Period(7, 7);
-        expect(period.isAllNight).to.true;
-
-        period = new Period(7, 8);
-        expect(period.isAllNight).to.false;
-
-        period = new Period(8, 7);
-        expect(period.isAllNight).to.false;
-    })
 });

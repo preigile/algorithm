@@ -46,10 +46,11 @@ describe('Calculator', function () {
         expect(devices['d0']).to.be.closeTo(0.24, 0.001);
     });
 
-    it('should calculate the simplest schedule', function () {
+    it('should use device mode', function () {
         const input = {
             "devices": [
-                {"id": "d0", "name": "d0", "power": 10, "duration": 2, "mode": "day"}
+                {"id": "d0", "name": "d0", "power": 10, "duration": 1, "mode": "day"},
+                {"id": "d1", "name": "d1", "power": 10, "duration": 1, "mode": "night"}
             ],
             "rates": [
                 {"from": 0, "to": 0, "value": 1}
@@ -59,13 +60,68 @@ describe('Calculator', function () {
 
         const output = calculate(input);
 
-        expect(output.schedule['9']).to.have.length(0);
-        expect(output.schedule['7']).to.include("d0");
-        expect(output.schedule['8']).to.include("d0");
-        expect(output.schedule['9']).to.have.length(0);
+        expect(output.schedule['7'], "Hour 7").to.have.members(['d0']);
+        expect(output.schedule['21'], "Hour 21").to.have.members(['d1']);
     });
 
-    it('should take into account the max power', function () {
+    it('should optimize cost for day mode devices', function () {
+        const input = {
+            "devices": [
+                {"id": "d0", "name": "d0", "power": 10, "duration": 1, "mode": "day"},
+                {"id": "d1", "name": "d1", "power": 10, "duration": 1, "mode": "day"}
+            ],
+            "rates": [
+                {"from": 10, "to": 13, "value": 2},
+                {"from": 13, "to": 15, "value": 1},
+                {"from": 15, "to": 17, "value": 3}
+            ],
+            "maxPower": 1000
+        };
+
+        const output = calculate(input);
+
+        expect(output.schedule['13']).to.have.members(['d0', 'd1']);
+    });
+
+    it('should optimize cost for night mode devices', function () {
+        const input = {
+            "devices": [
+                {"id": "d0", "name": "d0", "power": 10, "duration": 1, "mode": "night"},
+                {"id": "d1", "name": "d1", "power": 10, "duration": 1, "mode": "night"}
+            ],
+            "rates": [
+                {"from": 1, "to": 2, "value": 2},
+                {"from": 2, "to": 3, "value": 1},
+                {"from": 3, "to": 4, "value": 3}
+            ],
+            "maxPower": 1000
+        };
+
+        const output = calculate(input);
+
+        expect(output.schedule['2']).to.have.members(['d0', 'd1']);
+    });
+
+    it('should optimize cost for devices without mode', function () {
+        const input = {
+            "devices": [
+                {"id": "d0", "name": "d0", "power": 10, "duration": 1},
+                {"id": "d1", "name": "d1", "power": 10, "duration": 1}
+            ],
+            "rates": [
+                {"from": 10, "to": 13, "value": 2},
+                {"from": 13, "to": 15, "value": 1},
+                {"from": 15, "to": 17, "value": 3}
+            ],
+            "maxPower": 1000
+        };
+
+        const output = calculate(input);
+
+        expect(output.schedule['13']).to.have.members(['d0', 'd1']);
+    });
+
+    it('should use the max power', function () {
         const input = {
             "devices": [
                 {"id": "d0", "name": "d0", "power": 10, "duration": 1, "mode": "day"},
@@ -110,7 +166,7 @@ describe('Calculator on sample input data', function () {
         expect(actual).to.not.null;
 
         for (let hour in expected.schedule) {
-            expect(actual.schedule[hour], "Hour " + hour ).to.have.members(expected.schedule[hour]);
+            expect(actual.schedule[hour], "Hour " + hour).to.have.members(expected.schedule[hour]);
         }
     });
     //

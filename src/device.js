@@ -9,11 +9,6 @@ class Device {
         this.mode = mode;
     }
 
-    get energy() {
-        return this.power * this.duration;
-    }
-
-
     get allowedWorkPeriod() {
         if (this.mode) {
             // TODO: Check for values other than 'day' or 'night'
@@ -24,13 +19,13 @@ class Device {
     }
 
     get allowedStartPeriod() {
-        const period = this.allowedWorkPeriod.subtract(this.duration);
-
-        return this.mode ? period : new Period(0, 23);
+        return this.mode
+            ? this.allowedWorkPeriod.subtract(this.duration)
+            : new Period(0, 0);
     }
 
     get isAllNight() {
-        return this.allowedWorkPeriod.isAllNight;
+        return this.duration === 24;
     }
 
     hourlyPrice(rate) {
