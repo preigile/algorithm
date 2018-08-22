@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ac058ca0-7c34-462e-924a-39ed58f9dff2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/idea.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-    </list>
+    <list default="true" id="ac058ca0-7c34-462e-924a-39ed58f9dff2" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -52,7 +48,7 @@
           <entry key="js" value="2646" />
           <entry key="json" value="59" />
           <entry key="less" value="1" />
-          <entry key="md" value="248" />
+          <entry key="md" value="257" />
           <entry key="txt" value="2" />
         </counts>
       </usages-collector>
@@ -64,7 +60,7 @@
           <entry key="JSON" value="59" />
           <entry key="JavaScript" value="2648" />
           <entry key="Less" value="1" />
-          <entry key="PLAIN_TEXT" value="248" />
+          <entry key="PLAIN_TEXT" value="257" />
         </counts>
       </usages-collector>
     </session>
@@ -120,7 +116,7 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="360">
-              <caret line="24" column="91" lean-forward="true" selection-start-line="24" selection-start-column="91" selection-end-line="24" selection-end-column="91" />
+              <caret line="24" column="70" selection-start-line="24" selection-start-column="70" selection-end-line="24" selection-end-column="70" />
             </state>
           </provider>
         </entry>
@@ -331,12 +327,12 @@
       <workItem from="1534446427096" duration="361000" />
       <workItem from="1534447132722" duration="9912000" />
       <workItem from="1534848739470" duration="3484000" />
-      <workItem from="1534963490965" duration="1331000" />
+      <workItem from="1534963490965" duration="1722000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36891000" />
+    <option name="totallyTimeSpent" value="37282000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="824" extended-state="0" />
@@ -502,7 +498,7 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
-          <caret line="24" column="91" lean-forward="true" selection-start-line="24" selection-start-column="91" selection-end-line="24" selection-end-column="91" />
+          <caret line="24" column="70" selection-start-line="24" selection-start-column="70" selection-end-line="24" selection-end-column="70" />
         </state>
       </provider>
     </entry>
